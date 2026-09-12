@@ -122,7 +122,12 @@ models-dev-upstream/
 
 # Local editor / agent tooling (machine-specific; keep in global config, not the repo)
 .codex/
-.cursor/
+# Ignore Cursor local state; allow only shared skills we opt into (e.g. plain-speak)
+.cursor/*
+!.cursor/skills/
+.cursor/skills/*
+!.cursor/skills/plain-speak/
+!.cursor/skills/plain-speak/**
 .gemini/
 .zed/
 .mcp.json
