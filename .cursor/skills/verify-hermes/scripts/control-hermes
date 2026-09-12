@@ -1,0 +1,166 @@
+#!/usr/bin/env bash
+# control-hermes — agent-friendly harness for verify-hermes
+# Isolates state under HERMES_HOME=/tmp/hermes-verify-$RUN_ID
+set -euo pipefail
+
+ROOT="$(cd "$(dirname "$0")/../../../.." && pwd)"
+CMD="${1:-}"
+shift || true
+
+usage() {
+  cat <<'EOF'
+usage: control-hermes <command> [args]
+
+commands:
+  launch [--run-id ID]     Create disposable HERMES_HOME and print env exports
+  doctor [--run-id ID]     Read-only health check (requires prior launch)
+  run [--run-id ID] -- <hermes args...>
+                           Run hermes inside the isolated home; tee evidence
+  cleanup [--run-id ID]    Remove disposable HERMES_HOME only (keeps evidence)
+  evidence-dir [--run-id ID]
+                           Print evidence directory path
+
+env:
+  RUN_ID           default: $$
+  HERMES_VERIFY_ROOT  default: /tmp
+EOF
+}
+
+run_id="${RUN_ID:-}"
+while [[ $# -gt 0 ]]; do
+  case "$1" in
+    --run-id) run_id="$2"; shift 2 ;;
+    --) shift; break ;;
+    *) break ;;
+  esac
+done
+run_id="${run_id:-$$}"
+
+VERIFY_ROOT="${HERMES_VERIFY_ROOT:-/tmp}"
+HOME_DIR="$VERIFY_ROOT/hermes-verify-$run_id"
+EVIDENCE_DIR="$VERIFY_ROOT/hermes-verify-evidence/$run_id"
+
+need_uv() {
+  if ! command -v uv >/dev/null 2>&1; then
+    echo "doctor-fail: uv not on PATH; install from https://docs.astral.sh/uv/" >&2
+    exit 2
+  fi
+}
+
+case "$CMD" in
+  ""|-h|--help|help)
+    usage
+    ;;
+  launch)
+    need_uv
+    mkdir -p "$HOME_DIR" "$EVIDENCE_DIR"
+    {
+      echo "run_id=$run_id"
+      echo "HERMES_HOME=$HOME_DIR"
+      echo "evidence_dir=$EVIDENCE_DIR"
+      echo "workspace=$ROOT"
+    } | tee "$EVIDENCE_DIR/launch.env"
+    # ready when config path resolves under isolated home
+    # Keep uv/bootstrap noise on stderr out of the isolation check.
+    export HERMES_HOME="$HOME_DIR"
+    path_stdout="$(cd "$ROOT" && uv run -q hermes config path 2>"$EVIDENCE_DIR/launch-config-path.err")"
+    printf '%s\n' "$path_stdout" | tee "$EVIDENCE_DIR/launch-config-path.txt"
+    if [[ -s "$EVIDENCE_DIR/launch-config-path.err" ]]; then
+      echo "launch-stderr: $(tr '\n' ' ' <"$EVIDENCE_DIR/launch-config-path.err")" >&2
+    fi
+    case "$path_stdout" in
+      "$HOME_DIR"/*)
+        echo "ready: isolated HERMES_HOME at $HOME_DIR"
+        echo "evidence: $EVIDENCE_DIR"
+        ;;
+      *)
+        echo "launch-fail: config path '$path_stdout' is not under $HOME_DIR" >&2
+        exit 1
+        ;;
+    esac
+    ;;
+  doctor)
+    need_uv
+    if [[ ! -d "$HOME_DIR" ]]; then
+      echo "doctor-fail: missing $HOME_DIR — run control-hermes launch first" >&2
+      exit 2
+    fi
+    export HERMES_HOME="$HOME_DIR"
+    mkdir -p "$EVIDENCE_DIR"
+    set +e
+    (cd "$ROOT" && uv run -q hermes version) >"$EVIDENCE_DIR/doctor-version.txt" 2>&1
+    v_ec=$?
+    (cd "$ROOT" && uv run -q hermes doctor) >"$EVIDENCE_DIR/doctor.txt" 2>&1
+    d_ec=$?
+    (cd "$ROOT" && uv run -q hermes config path) >"$EVIDENCE_DIR/doctor-config-path.txt" 2>"$EVIDENCE_DIR/doctor-config-path.err"
+    p_ec=$?
+    set -e
+    # Isolation check must use hermes stdout only (last non-empty line).
+    cfg="$(awk 'NF{line=$0} END{print line}' "$EVIDENCE_DIR/doctor-config-path.txt")"
+    echo "version_exit=$v_ec doctor_exit=$d_ec path_exit=$p_ec config_path=$cfg"
+    if [[ $v_ec -ne 0 || $p_ec -ne 0 ]]; then
+      echo "doctor-fail: hermes version/config path failed" >&2
+      exit 1
+    fi
+    case "$cfg" in
+      "$HOME_DIR"/*) ;;
+      *)
+        echo "doctor-fail: config path not isolated ($cfg)" >&2
+        exit 1
+        ;;
+    esac
+    # doctor may report issues but should still exit 0 on a fresh home
+    if [[ $d_ec -ne 0 ]]; then
+      echo "doctor-warn: hermes doctor exited $d_ec (see $EVIDENCE_DIR/doctor.txt)" >&2
+    fi
+    echo "doctor-ok: instance at $HOME_DIR worth driving"
+    ;;
+  run)
+    need_uv
+    if [[ ! -d "$HOME_DIR" ]]; then
+      echo "run-fail: missing $HOME_DIR — run control-hermes launch first" >&2
+      exit 2
+    fi
+    if [[ $# -eq 0 ]]; then
+      echo "run-fail: pass hermes args after --" >&2
+      exit 2
+    fi
+    export HERMES_HOME="$HOME_DIR"
+    mkdir -p "$EVIDENCE_DIR"
+    stamp="$(date -u +%Y%m%dT%H%M%SZ)"
+    slug="$(printf '%s' "$*" | tr -c 'a-zA-Z0-9._-' '_' | cut -c1-80)"
+    out="$EVIDENCE_DIR/${stamp}-${slug}.txt"
+    {
+      echo "\$ hermes $*"
+      echo "HERMES_HOME=$HERMES_HOME"
+      echo "---"
+    } >"$out"
+    set +e
+    (cd "$ROOT" && uv run -q hermes "$@") >>"$out" 2>&1
+    ec=$?
+    set -e
+    {
+      echo "---"
+      echo "exit=$ec"
+    } >>"$out"
+    echo "evidence=$out exit=$ec"
+    exit "$ec"
+    ;;
+  cleanup)
+    if [[ -d "$HOME_DIR" ]]; then
+      rm -rf "$HOME_DIR"
+      echo "removed $HOME_DIR"
+    else
+      echo "nothing to remove at $HOME_DIR"
+    fi
+    echo "evidence kept at $EVIDENCE_DIR"
+    ;;
+  evidence-dir)
+    echo "$EVIDENCE_DIR"
+    ;;
+  *)
+    echo "unknown command: $CMD" >&2
+    usage >&2
+    exit 2
+    ;;
+esac
