@@ -122,21 +122,14 @@ models-dev-upstream/
 
 # Local editor / agent tooling (machine-specific; keep in global config, not the repo)
 .codex/
-<<<<<<< HEAD
-# Ignore Cursor local state; allow only shared skills we opt into (e.g. plain-speak)
+# Ignore Cursor local state; allow only shared skills we opt into.
 .cursor/*
 !.cursor/skills/
 .cursor/skills/*
 !.cursor/skills/plain-speak/
 !.cursor/skills/plain-speak/**
-=======
-.cursor/
-# Exception: the verify-hermes harness is a shared lever, not machine-local state.
-!.cursor/skills/
-.cursor/skills/*
 !.cursor/skills/verify-hermes/
 !.cursor/skills/verify-hermes/**
->>>>>>> origin/main
 .gemini/
 .zed/
 .mcp.json
