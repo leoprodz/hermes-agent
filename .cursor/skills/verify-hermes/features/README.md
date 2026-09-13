@@ -44,6 +44,7 @@ Each feature file starts with an H1 title and one paragraph describing the user-
 - [Show status](./show-status.md) — component status overview without starting the gateway.
 - [Get and set config](./get-set-config.md) — read and write a config value under an isolated home.
 - [List sessions](./list-sessions.md) — session-store listing under an isolated home (F-01 CLI foothold).
+- [Agents help tip](./agents-help-tip.md) — CLI pointer to TUI/Desktop live agent visibility (F-01 discovery).
 
 ## TODO — deferred F-01 surfaces (next map candidates)
 
@@ -51,4 +52,4 @@ Proposed after walking `hermes --help` for agents / delegation / desktop visibil
 
 1. **List profiles** (`hermes profile list`) — multi-instance roster; shows `◆default` / gateway column on a fresh home.
 2. **Show delegation toolset** (`hermes tools list --platform cli`) — prove the `delegation` toolset line is present/enabled for CLI (config knobs via `hermes config get delegation.*` as a sibling entry if needed).
-3. **Out of CLI default scope (document only):** TUI `/agents` overlay and Desktop Agents panel — live subagent trees need interactive/PTY or Electron; not driveable by the default control-hermes recipes until a dedicated harness exists.
+3. **Out of CLI default scope (document only):** TUI `/agents` overlay and Desktop Agents panel — live subagent trees need interactive/PTY or Electron; not driveable by the default control-hermes recipes until a dedicated harness exists. `hermes agents` only signposts those surfaces.
