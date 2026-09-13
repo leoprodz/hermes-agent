@@ -29,6 +29,7 @@ Legend: ✅ done · ⏭ next · 🔒 later (needs more setup)
 | Feature Map seed | 4 CLI features under `verify-hermes/features/` | ✅ |
 | Lab C — Maintain the map | `list-sessions.md` + F-01 TODOs in README | ✅ |
 | Lab D — poteto + verify | `hermes agents` tip + `agents-help-tip.md` | ✅ |
+| Lab E — swarm × verify | 3 isolated evidence runs (see `lab-e-swarm-verify.md`) | ✅ |
 | Cloud agents > worktrees | Cloud subagents for Grokbot research | ✅ (taste) |
 
 ---
@@ -97,7 +98,7 @@ Use verify-hermes for any hermes CLI checks. Show evidence. No Desktop UI work y
 
 ---
 
-### Lab E — `/swarm` + verification (sample size)
+### Lab E — `/swarm` + verification (sample size) ✅
 **Skill:** `/swarm`  
 Lauren: fan-out verification to confirm no regression.
 
@@ -284,3 +285,4 @@ After each lab, append one line to `notes/hermes-frictions.md` or here:
 
 - Lab C · 2026-09-13 · learned: next F-01 CLI footholds are sessions list (proven), profile list + tools delegation line (TODO); live `/agents`/Desktop stay out of default CLI map · evidence: `/tmp/hermes-verify-evidence/labc-proof-20260913T012115/` (`*sessions_list*`) · map: `.cursor/skills/verify-hermes/features/list-sessions.md`
 - Lab D · 2026-09-13 · learned: first product change with poteto+verify — `hermes agents` is a signpost (not a roster); proof is the tip string in control-hermes transcripts · evidence: `/tmp/hermes-verify-evidence/labd-proof-20260913T014018/` · map: `.cursor/skills/verify-hermes/features/agents-help-tip.md`
+- Lab E · 2026-09-13 · learned: one green run is anecdote; 3 isolated homes in parallel is a sample — lever held (3/3) · evidence: `notes/lab-e-swarm-verify.md` + `/tmp/hermes-verify-evidence/labe-w{1,2,3}-20260913T174204/`
