@@ -19,6 +19,7 @@ Legend: ✅ done · ⏭ next · 🔒 later (needs more setup)
 | `/setup-pstack` | Light inherit-parent | ✅ |
 | `/create-verification-skill` | `.cursor/skills/verify-hermes/` + prove version | ✅ |
 | Feature Map seed | 4 CLI features under `verify-hermes/features/` | ✅ |
+| Lab C — Maintain the map | `list-sessions.md` + F-01 TODOs in README | ✅ |
 | Cloud agents > worktrees | Cloud subagents for Grokbot research | ✅ (taste) |
 
 ---
@@ -54,7 +55,7 @@ end to end. Show me the evidence paths. Cleanup home; keep evidence.
 
 ---
 
-### Lab C — Maintain the map
+### Lab C — Maintain the map ✅
 **Skill:** `/maintain-verification-skill`  
 **Experience:** map drifts; maintenance catches it.
 
@@ -271,3 +272,5 @@ After each lab, append one line to `notes/hermes-frictions.md` or here:
 ```text
 - Lab X · YYYY-MM-DD · learned: … · evidence: …
 ```
+
+- Lab C · 2026-09-13 · learned: next F-01 CLI footholds are sessions list (proven), profile list + tools delegation line (TODO); live `/agents`/Desktop stay out of default CLI map · evidence: `/tmp/hermes-verify-evidence/labc-proof-20260913T012115/` (`*sessions_list*`) · map: `.cursor/skills/verify-hermes/features/list-sessions.md`
