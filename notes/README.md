@@ -10,6 +10,7 @@ Durable workspace for experiential learning. Other chats: start here.
 | **Lauren Pt.2** (supervise / plan) | [`pstack-articles/02-supervising-someone-smarter.md`](./pstack-articles/02-supervising-someone-smarter.md) |
 | Article index | [`pstack-articles/README.md`](./pstack-articles/README.md) |
 | Labs (prompts to run) | [`pstack-labs.md`](./pstack-labs.md) |
+| **How to teach each lab** (contrast first) | [`pstack-lab-teaching.md`](./pstack-lab-teaching.md) |
 | Friction backlog (F-01…) | [`hermes-frictions.md`](./hermes-frictions.md) |
 | Verification skill (local for now) | [`.cursor/skills/verify-hermes/`](../.cursor/skills/verify-hermes/) |
 | **Plain-speak skill** (tech → no-tech) | [`.cursor/skills/plain-speak/`](../.cursor/skills/plain-speak/) — outside `notes/`, committed with the repo |
