@@ -8,6 +8,14 @@ Mode setup: light `inherit-parent` in `~/.cursor/rules/pstack-models.mdc`.
 
 Copy a prompt into a **new chat** unless the lab says “same chat.” Prefer starting with `/poteto-mode` when the lab is multi-step.
 
+### How Leo learns these labs (agents: read this)
+
+On “vamos con Lab X” (new chat or same): **brief first, apply only after he says so.**
+
+Required briefing shape (same as Lab D pre-brief): prior-labs table → **contrast** (forma no recomendada vs forma pstack) → name the pieces → why it matters for understanding pstack → scope / what to ignore → ask “¿Arrancamos?”
+
+Durable guide: [`pstack-lab-teaching.md`](./pstack-lab-teaching.md) (also mirrored under `.cursor/rules/` locally if present; **notes/** is the source of truth in git).
+
 Legend: ✅ done · ⏭ next · 🔒 later (needs more setup)
 
 ---
