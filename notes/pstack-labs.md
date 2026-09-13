@@ -20,6 +20,7 @@ Legend: ✅ done · ⏭ next · 🔒 later (needs more setup)
 | `/create-verification-skill` | `.cursor/skills/verify-hermes/` + prove version | ✅ |
 | Feature Map seed | 4 CLI features under `verify-hermes/features/` | ✅ |
 | Lab C — Maintain the map | `list-sessions.md` + F-01 TODOs in README | ✅ |
+| Lab D — poteto + verify | `hermes agents` tip + `agents-help-tip.md` | ✅ |
 | Cloud agents > worktrees | Cloud subagents for Grokbot research | ✅ (taste) |
 
 ---
@@ -72,7 +73,7 @@ or a documented CLI command. Prove it. Leave the rest as TODO in features/README
 
 ---
 
-### Lab D — `/poteto-mode` + verify (feature recipe from Pt.1)
+### Lab D — `/poteto-mode` + verify (feature recipe from Pt.1) ✅
 **Skills:** `/poteto-mode`, `verify-hermes`  
 Lauren’s pattern adapted:
 
@@ -274,3 +275,4 @@ After each lab, append one line to `notes/hermes-frictions.md` or here:
 ```
 
 - Lab C · 2026-09-13 · learned: next F-01 CLI footholds are sessions list (proven), profile list + tools delegation line (TODO); live `/agents`/Desktop stay out of default CLI map · evidence: `/tmp/hermes-verify-evidence/labc-proof-20260913T012115/` (`*sessions_list*`) · map: `.cursor/skills/verify-hermes/features/list-sessions.md`
+- Lab D · 2026-09-13 · learned: first product change with poteto+verify — `hermes agents` is a signpost (not a roster); proof is the tip string in control-hermes transcripts · evidence: `/tmp/hermes-verify-evidence/labd-proof-20260913T014018/` · map: `.cursor/skills/verify-hermes/features/agents-help-tip.md`
