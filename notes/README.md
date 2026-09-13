@@ -21,9 +21,12 @@ Paste something like:
 ```text
 Read notes/README.md and notes/pstack-articles/README.md.
 Primary sources: Lauren's two pstack articles under notes/pstack-articles/.
-Current lab: notes/pstack-labs.md Lab B (or whichever).
+Current lab: notes/pstack-labs.md Lab E (or whichever).
 Friction context: notes/hermes-frictions.md F-01.
+Teach first like Lab D pre-brief (contrast no-pstack vs pstack); apply only when I say.
 ```
+
+**Teaching rule:** `.cursor/rules/pstack-lab-teaching.mdc` — on “vamos con Lab X”, brief with contrast before applying.
 
 ## Sources (original X posts)
 
