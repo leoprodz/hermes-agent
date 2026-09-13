@@ -2,6 +2,13 @@
 
 Durable workspace for experiential learning. Other chats: start here.
 
+## Linear board
+
+Project (one issue per lab slice):
+[Hermes × pstack lab](https://linear.app/gtmcore/project/hermes-pstack-lab-845345de5a74)
+
+Suggested next: **[Lab B](https://linear.app/gtmcore/issue/GTM-356)** → then **[Lab G](https://linear.app/gtmcore/issue/GTM-361)**.
+
 ## Quick links
 
 | What | Path |
@@ -21,7 +28,7 @@ Paste something like:
 ```text
 Read notes/README.md and notes/pstack-articles/README.md.
 Primary sources: Lauren's two pstack articles under notes/pstack-articles/.
-Current lab: notes/pstack-labs.md Lab B (or whichever).
+Current lab: notes/pstack-labs.md Lab B (or whichever) — or open the Linear issue.
 Friction context: notes/hermes-frictions.md F-01.
 ```
 
