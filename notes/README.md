@@ -9,6 +9,8 @@ Project (one issue per lab slice):
 
 Suggested next: **[Lab B](https://linear.app/gtmcore/issue/GTM-356)** → then **[Lab G](https://linear.app/gtmcore/issue/GTM-361)**.
 
+In new chats you can just say **“see Linear”** — this workspace defaults to that project via `.cursor/rules/linear-default.mdc`.
+
 ## Quick links
 
 | What | Path |

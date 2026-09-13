@@ -1,0 +1,17 @@
+---
+description: Default Linear project for this workspace when the user says "see Linear" / "Linear" without naming a project.
+alwaysApply: true
+---
+
+# Default Linear project
+
+When Leo (or any user in this workspace) says **"see Linear"**, **"Linear"**, **"the board"**, or asks for issues/labs **without naming a project**, use this project — do not ask which one:
+
+- **Name:** Hermes × pstack lab
+- **URL:** https://linear.app/gtmcore/project/hermes-pstack-lab-845345de5a74
+- **Team:** GTMCore (`GTM`)
+- **Repo index:** `notes/README.md`
+
+Suggested next if none is open: Lab B (`GTM-356`), then Lab G (`GTM-361`).
+
+Only ask for a different Linear project if they name one explicitly.
