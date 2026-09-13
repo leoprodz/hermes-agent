@@ -27,7 +27,7 @@ Friction context: notes/hermes-frictions.md F-01.
 Teach first like Lab D pre-brief (contrast no-pstack vs pstack); apply only when I say.
 ```
 
-**Teaching rule:** `.cursor/rules/pstack-lab-teaching.mdc` — on “vamos con Lab X”, brief with contrast before applying.
+**Teaching guide:** [`pstack-lab-teaching.md`](./pstack-lab-teaching.md) — on “vamos con Lab X”, brief with contrast before applying.
 
 ## Sources (original X posts)
 
