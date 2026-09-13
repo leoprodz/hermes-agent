@@ -14,7 +14,7 @@ On “vamos con Lab X” (new chat or same): **brief first, apply only after he 
 
 Required briefing shape (same as Lab D pre-brief): prior-labs table → **contrast** (forma no recomendada vs forma pstack) → name the pieces → why it matters for understanding pstack → scope / what to ignore → ask “¿Arrancamos?”
 
-Durable rule: `.cursor/rules/pstack-lab-teaching.mdc`.
+Durable guide: [`pstack-lab-teaching.md`](./pstack-lab-teaching.md) (also mirrored under `.cursor/rules/` locally if present; **notes/** is the source of truth in git).
 
 Legend: ✅ done · ⏭ next · 🔒 later (needs more setup)
 
